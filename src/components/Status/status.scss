@@ -1,0 +1,23 @@
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__icon {
+    border-radius: 50%;
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-right: 0.2rem;
+
+    &--online {
+      background-color: #55cc44;
+    }
+
+    &--offline {
+      background-color: #d63d2e;
+    }
+
+    &--unknown {
+      background-color: #9e9e9e;
+    }
+  }
+}
