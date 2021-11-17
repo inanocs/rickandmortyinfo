@@ -1,5 +1,6 @@
 import useHttp from "../../hooks/useHttp";
 import Status from "../Status";
+import "./card.scss";
 
 const CharacterCard = ({ character }) => {
   const [episodeInfo] = useHttp(character.episode[0]);
@@ -17,16 +18,18 @@ const CharacterCard = ({ character }) => {
       </div>
       <div className="card__content">
         <div className="card__info">
-          <a className="card__link card__link--orange" href={character.url}>
-            <h2 className="card__name">{character.name}</h2>
-          </a>
+          <h2 className="card__name">
+            <a className="card__link card__link--orange" href={character.url}>
+              {character.name}
+            </a>
+          </h2>
           <Status
             message={`${character.status} - ${character.species}`}
             status={getStatusStyle(character.status)}
           />
         </div>
         <div className="card__info">
-          <span className="card__subtitle">Last known location:</span>
+          <p className="card__subtitle">Last known location:</p>
           <a
             href={character.location.url}
             className="card__link card__link--orange"
@@ -35,7 +38,7 @@ const CharacterCard = ({ character }) => {
           </a>
         </div>
         <div className="card__info">
-          <span className="card__subtitle">First seen in:</span>
+          <p className="card__subtitle">First seen in:</p>
           <a
             href={character.episode[0]}
             className="card__link card__link--orange"

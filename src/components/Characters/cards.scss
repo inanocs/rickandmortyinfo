@@ -1,6 +1,18 @@
 .cards {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   list-style: none;
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 0;
+  gap: 2rem;
+
+  @media (min-width: 1400px) {
+    display: grid;
+    grid-template-columns: repeat(2, 600px);
+    justify-items: center;
+    flex-direction: row;
+  }
 }

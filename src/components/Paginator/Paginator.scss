@@ -1,0 +1,14 @@
+.MuiButtonBase-root,
+.MuiPaginationItem-root {
+  background: white !important;
+}
+
+.Mui-selected {
+  background: #1976d2 !important;
+}
+.paginator {
+  display: flex;
+}
+.paginator--center {
+  justify-content: center;
+}

@@ -1,0 +1,10 @@
+.section {
+  padding: 1.5rem;
+  &--black {
+    background-color: #24282f;
+    color: white;
+  }
+  &--mt-1 {
+    margin-top: 1rem;
+  }
+}

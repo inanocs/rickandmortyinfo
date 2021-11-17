@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Index from "../../pages/index";
+import CharactersView from "../../pages/characters";
 import BurgerMenu from "../BurgerMenu";
 import "./MainNav.scss";
 
@@ -72,7 +73,9 @@ const MainNav = () => {
         <Route exact path="/">
           <Index />
         </Route>
-        <Route path="/characters"></Route>
+        <Route path="/characters" location={{ search: "?page=:page" }}>
+          <CharactersView />
+        </Route>
         <Route path="/episodes"></Route>
         <Route path="/locations"></Route>
       </Switch>
