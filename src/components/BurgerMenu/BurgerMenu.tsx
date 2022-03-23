@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { BurgerMenuProps } from "../../types";
 import "./burger-menu.scss";
 
 const menuDisplayStyles = ["burger-menu__item--display"];
-const BurgerMenu = ({ onMenuDisplay }) => {
+const BurgerMenu: React.FC<BurgerMenuProps> = ({ onMenuDisplay }) => {
   const [display, setDisplay] = useState(false);
 
   function displayMenuBar() {

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Index from "../../pages/index";
-import CharactersView from "../../pages/characters";
-import BurgerMenu from "../BurgerMenu";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "../../pages/Home";
+import CharactersPage from "../../pages/CharactersPage";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import "./MainNav.scss";
 
 const navStyles = {
@@ -69,16 +69,12 @@ const MainNav = () => {
         </ul>
       </nav>
 
-      <Switch>
-        <Route exact path="/">
-          <Index />
-        </Route>
-        <Route path="/characters" location={{ search: "?page=:page" }}>
-          <CharactersView />
-        </Route>
-        <Route path="/episodes"></Route>
-        <Route path="/locations"></Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/characters" element={<CharactersPage />} />
+        <Route path="/episodes" />
+        <Route path="/locations" />
+      </Routes>
     </Router>
   );
 };

@@ -1,9 +1,16 @@
 import React from "react";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
-import "./Paginator.scss";
 
-const Paginator = ({ pages = 0, center = true, onChange, actualPage }) => {
+import "./Paginator.scss";
+import { PaginatorProps } from "../../types";
+
+const Paginator: React.FC<PaginatorProps> = ({
+  pages = 0,
+  center = true,
+  onChange,
+  actualPage,
+}) => {
   const paginatorClasses = {
     root: `paginator ${center ? "paginator--center" : ""}`,
   };

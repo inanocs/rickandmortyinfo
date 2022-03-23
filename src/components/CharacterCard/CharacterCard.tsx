@@ -1,11 +1,17 @@
 import useHttp from "../../hooks/useHttp";
-import Status from "../Status";
+import {
+  CharacterCardProps,
+  Episode,
+  Status as StatusType,
+  StatusStyle,
+} from "../../types";
+import Status from "../Status/Status";
 import "./card.scss";
 
-const CharacterCard = ({ character }) => {
-  const [episodeInfo] = useHttp(character.episode[0]);
+const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
+  const [episodeInfo] = useHttp<Episode>(character.episode[0]);
 
-  const getStatusStyle = (status) => {
+  const getStatusStyle = (status: StatusType): StatusStyle => {
     if (status === "unknown") return status;
 
     return status === "Alive" ? "online" : "offline";
@@ -37,15 +43,17 @@ const CharacterCard = ({ character }) => {
             {character.location.name}
           </a>
         </div>
-        <div className="card__info">
-          <p className="card__subtitle">First seen in:</p>
-          <a
-            href={character.episode[0]}
-            className="card__link card__link--orange"
-          >
-            {episodeInfo.name}
-          </a>
-        </div>
+        {episodeInfo && !Array.isArray(episodeInfo) && (
+          <div className="card__info">
+            <p className="card__subtitle">First seen in:</p>
+            <a
+              href={character.episode[0]}
+              className="card__link card__link--orange"
+            >
+              {episodeInfo?.name}
+            </a>
+          </div>
+        )}
       </div>
     </li>
   );
