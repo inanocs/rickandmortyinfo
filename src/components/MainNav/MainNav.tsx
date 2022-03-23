@@ -4,6 +4,7 @@ import Home from "../../pages/Home";
 import CharactersPage from "../../pages/CharactersPage";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import "./MainNav.scss";
+import Building from "../../pages/Building";
 
 const navStyles = {
   nav: ["nav--show"],
@@ -72,8 +73,8 @@ const MainNav = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/characters" element={<CharactersPage />} />
-        <Route path="/episodes" />
-        <Route path="/locations" />
+        <Route path="/episodes" element={<Building />} />
+        <Route path="/locations" element={<Building />} />
       </Routes>
     </Router>
   );

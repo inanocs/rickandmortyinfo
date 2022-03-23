@@ -4,7 +4,7 @@ import Paginator from "../components/Paginator/Paginator";
 import SearchForm from "../components/SearchForm/SearchForm";
 import Section from "../components/Section/Section";
 import useHttp from "../hooks/useHttp";
-import { settings } from "../services/settings";
+import { settings } from "../util/settings";
 import { CharacterPaginated, PaginatorOnChangeEvent } from "../types";
 const CharactersPage = () => {
   document.title = "Characters";
@@ -48,20 +48,22 @@ const CharactersPage = () => {
   };
   return (
     <>
-      {characters && !Array.isArray(characters) ? (
-        <Section className="section section--black ">
-          <SearchForm onSearch={searchData} />
-          <Characters characters={characters.results}>
-            <Paginator
-              pages={characters.info ? characters.info.pages : 0}
-              actualPage={Number(pageSelected)}
-              onChange={handleChange}
-            />
-          </Characters>
-        </Section>
-      ) : (
-        <h1>Cargando...</h1>
-      )}
+      <Section className="section section--black ">
+        {characters && !Array.isArray(characters) ? (
+          <>
+            <SearchForm onSearch={searchData} />
+            <Characters characters={characters.results}>
+              <Paginator
+                pages={characters.info ? characters.info.pages : 0}
+                actualPage={Number(pageSelected)}
+                onChange={handleChange}
+              />
+            </Characters>
+          </>
+        ) : (
+          <h2 className="section__text--center">Cargando...</h2>
+        )}
+      </Section>
     </>
   );
 };

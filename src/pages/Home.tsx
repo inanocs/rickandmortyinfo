@@ -1,8 +1,8 @@
-import { settings } from "../services/settings";
-import useHttp from "../hooks/useHttp";
-import { getRandomIds } from "../services/getRandomIds";
 import Characters from "../components/Characters/Characters";
 import Section from "../components/Section/Section";
+import useHttp from "../hooks/useHttp";
+import { getRandomIds } from "../util/getRandomIds";
+import { settings } from "../util/settings";
 import { Character } from "../types";
 const Home = () => {
   document.title = "Home";
@@ -15,7 +15,7 @@ const Home = () => {
         {characters && Array.isArray(characters) ? (
           <Characters characters={characters} />
         ) : (
-          <h2>Cargando...</h2>
+          <h2 className="section__text--center">Cargando...</h2>
         )}
       </Section>
     </>
