@@ -4,10 +4,10 @@ import useHttp from "../hooks/useHttp";
 import { getRandomIds } from "../util/getRandomIds";
 import { settings } from "../util/settings";
 import { Character } from "../types";
+const randomIds = getRandomIds(671, 6);
+const url = `${settings.CHARACTERS_URL}${randomIds.join(",")}`;
 const Home = () => {
   document.title = "Home";
-  const randomIds = getRandomIds(671, 6);
-  const url = `${settings.CHARACTERS_URL}${randomIds.join(",")}`;
   const [characters] = useHttp<Character>(url);
   return (
     <>

@@ -9,8 +9,7 @@ export default function useHttp<T>(
     const res = await fetch(`${url}`);
     const apiData = await res.json();
     setData(apiData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [url]);
 
   useEffect(() => {
     memorizedFetchData();

@@ -1,5 +1,5 @@
 import { StatusProps } from "../../types";
-import "./status.scss";
+import "./Status.scss";
 const Status: React.FC<StatusProps> = ({
   status = "unknown",
   message = "unknown",
