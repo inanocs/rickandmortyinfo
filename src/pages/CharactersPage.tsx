@@ -1,46 +1,26 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Characters from "../components/Characters/Characters";
+import Loader from "../components/Loader/Loader";
 import Paginator from "../components/Paginator/Paginator";
 import SearchForm from "../components/SearchForm/SearchForm";
 import Section from "../components/Section/Section";
 import useHttp from "../hooks/useHttp";
-import { settings } from "../util/settings";
 import { CharacterPaginated, PaginatorOnChangeEvent } from "../types";
-import Loader from "../components/Loader/Loader";
+import { settings } from "../util/settings";
 const CharactersPage = () => {
   document.title = "Characters";
   const navigate = useNavigate();
   const location = useLocation();
-  const pageSelected =
-    location.search === "" || !location.search.includes("page=")
-      ? 1
-      : location.search
-          .replaceAll("&", "?")
-          .split("?")
-          .filter((item) => item.includes("page"))
-          .join("")
-          .split("=")[1];
+  const [searchParams, setSearchParams] = useSearchParams();
   const url = `${settings.CHARACTERS_URL}${location.search}`;
-  const [characters, fetchData, isLoading] = useHttp<CharacterPaginated>(url);
-  const handleChange: PaginatorOnChangeEvent = (event, page) => {
-    const pageSelected = page;
-    let querySearch = "";
-    if (location.search !== "") {
-      if (location.search.includes("?page")) {
-        querySearch = location.search.replace(
-          /\?page=\d{0,}/,
-          `?page=${pageSelected}`
-        );
-      } else {
-        querySearch = location.search.includes("&page")
-          ? location.search.replace(/&page=\d{0,}/, `&page=${pageSelected}`)
-          : `${location.search}&page=${pageSelected}`;
-      }
-    } else {
-      querySearch = `?page=${pageSelected}`;
-    }
-    navigate(`/characters${querySearch}`);
-    fetchData(`${settings.CHARACTERS_URL}${querySearch}`);
+  const pageSelected = searchParams.get("page") || 1;
+  const [characters, , isLoading] = useHttp<CharacterPaginated>(url);
+
+  const handleChange: PaginatorOnChangeEvent = (_event, page) => {
+    setSearchParams({
+      ...Object.fromEntries(searchParams),
+      page: page.toString(),
+    });
   };
 
   const searchData = (query: string) => {
