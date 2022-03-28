@@ -45,6 +45,9 @@
     padding-bottom: 1rem;
     text-decoration: none;
     width: 100%;
+    &.active {
+      color: var(--main-green);
+    }
   }
   @media screen and (min-width: 1024px) {
     background: none;
