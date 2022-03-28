@@ -8,15 +8,15 @@
     margin-right: 0.2rem;
 
     &--online {
-      background-color: #55cc44;
+      background-color: var(--main-green);
     }
 
     &--offline {
-      background-color: #d63d2e;
+      background-color: var(--main-red);
     }
 
     &--unknown {
-      background-color: #9e9e9e;
+      background-color: var(--main-gray);
     }
   }
 }

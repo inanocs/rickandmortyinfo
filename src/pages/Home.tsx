@@ -4,6 +4,7 @@ import useHttp from "../hooks/useHttp";
 import { getRandomIds } from "../util/getRandomIds";
 import { settings } from "../util/settings";
 import { Character } from "../types";
+import Loader from "../components/Loader/Loader";
 const randomIds = getRandomIds(671, 6);
 const url = `${settings.CHARACTERS_URL}${randomIds.join(",")}`;
 const Home = () => {
@@ -15,7 +16,7 @@ const Home = () => {
         {characters && Array.isArray(characters) ? (
           <Characters characters={characters} />
         ) : (
-          <h2 className="section__text--center">Cargando...</h2>
+          <Loader />
         )}
       </Section>
     </>

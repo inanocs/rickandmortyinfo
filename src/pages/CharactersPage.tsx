@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router-dom";
 import Characters from "../components/Characters/Characters";
 import Paginator from "../components/Paginator/Paginator";
 import SearchForm from "../components/SearchForm/SearchForm";
@@ -6,12 +6,13 @@ import Section from "../components/Section/Section";
 import useHttp from "../hooks/useHttp";
 import { settings } from "../util/settings";
 import { CharacterPaginated, PaginatorOnChangeEvent } from "../types";
+import Loader from "../components/Loader/Loader";
 const CharactersPage = () => {
   document.title = "Characters";
   const navigate = useNavigate();
   const location = useLocation();
   const pageSelected =
-    location.search === ""
+    location.search === "" || !location.search.includes("page=")
       ? 1
       : location.search
           .replaceAll("&", "?")
@@ -20,7 +21,7 @@ const CharactersPage = () => {
           .join("")
           .split("=")[1];
   const url = `${settings.CHARACTERS_URL}${location.search}`;
-  const [characters, fetchData] = useHttp<CharacterPaginated>(url);
+  const [characters, fetchData, isLoading] = useHttp<CharacterPaginated>(url);
   const handleChange: PaginatorOnChangeEvent = (event, page) => {
     const pageSelected = page;
     let querySearch = "";
@@ -43,15 +44,14 @@ const CharactersPage = () => {
   };
 
   const searchData = (query: string) => {
-    fetchData(`${settings.CHARACTERS_URL}${query}`);
     navigate(`/characters${query}`);
   };
   return (
     <>
       <Section className="section section--black ">
-        {characters && !Array.isArray(characters) ? (
+        <SearchForm onSearch={searchData} />
+        {!isLoading && characters && !Array.isArray(characters) ? (
           <>
-            <SearchForm onSearch={searchData} />
             <Characters characters={characters.results}>
               <Paginator
                 pages={characters.info ? characters.info.pages : 0}
@@ -61,7 +61,7 @@ const CharactersPage = () => {
             </Characters>
           </>
         ) : (
-          <h2 className="section__text--center">Cargando...</h2>
+          <Loader />
         )}
       </Section>
     </>
