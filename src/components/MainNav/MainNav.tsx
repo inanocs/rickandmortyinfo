@@ -1,7 +1,27 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { NavigationRoutes } from "../../types";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import "./MainNav.scss";
+
+export const routes: NavigationRoutes[] = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "Characters",
+    path: "/characters",
+  },
+  {
+    name: "Episodes",
+    path: "/episodes",
+  },
+  {
+    name: "Locations",
+    path: "/locations",
+  },
+];
 
 const navStyles = {
   nav: ["nav--show"],
@@ -26,50 +46,19 @@ const MainNav = () => {
         onMenuDisplay={displayMenuStyles}
       />
       <ul className={`nav ${displayMenu ? navStyles.nav.join(" ") : ""}`}>
-        <li className="nav__item">
-          <NavLink
-            className={`nav__link ${
-              displayMenu ? navStyles.navLink.join(" ") : ""
-            }`}
-            to="/"
-            onClick={displayMenuStyles}
-          >
-            Home
-          </NavLink>
-        </li>
-        <li className="nav__item">
-          <NavLink
-            className={`nav__link ${
-              displayMenu ? navStyles.navLink.join(" ") : ""
-            }`}
-            to="/characters"
-            onClick={displayMenuStyles}
-          >
-            Characters
-          </NavLink>
-        </li>
-        <li className="nav__item">
-          <NavLink
-            className={`nav__link ${
-              displayMenu ? navStyles.navLink.join(" ") : ""
-            }`}
-            onClick={displayMenuStyles}
-            to="/episodes"
-          >
-            Episodes
-          </NavLink>
-        </li>
-        <li className="nav__item">
-          <NavLink
-            className={`nav__link ${
-              displayMenu ? navStyles.navLink.join(" ") : ""
-            }`}
-            onClick={displayMenuStyles}
-            to="/locations"
-          >
-            Locations
-          </NavLink>
-        </li>
+        {routes.map((route) => (
+          <li key={route.name} className="nav__item">
+            <NavLink
+              className={`nav__link ${
+                displayMenu ? navStyles.navLink.join(" ") : ""
+              }`}
+              to={route.path}
+              onClick={displayMenuStyles}
+            >
+              {route.name}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );

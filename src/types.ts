@@ -114,3 +114,8 @@ export type Location = {
   name: string;
   url: string;
 };
+
+export type NavigationRoutes = {
+  name: string;
+  path: string;
+};

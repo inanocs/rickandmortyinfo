@@ -6,6 +6,7 @@ import MainNav from "./components/MainNav/MainNav";
 import Building from "./pages/Building";
 import CharactersPage from "./pages/CharactersPage";
 import Home from "./pages/Home";
+import NotFoundPage from "./pages/NotFoundPage";
 import { theme } from "./util/muiSettings";
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/characters" element={<CharactersPage />} />
             <Route path="/episodes" element={<Building />} />
             <Route path="/locations" element={<Building />} />
+            <Route path="/*" element={<NotFoundPage />} />
           </Routes>
           <Footer />
         </div>
