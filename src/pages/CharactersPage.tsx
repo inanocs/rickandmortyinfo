@@ -1,5 +1,6 @@
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Characters from "../components/Characters/Characters";
+import Error from "../components/Error/Error";
 import Loader from "../components/Loader/Loader";
 import Paginator from "../components/Paginator/Paginator";
 import SearchForm from "../components/SearchForm/SearchForm";
@@ -14,7 +15,7 @@ const CharactersPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const url = `${settings.CHARACTERS_URL}${location.search}`;
   const pageSelected = searchParams.get("page") || 1;
-  const [characters, , isLoading] = useHttp<CharacterPaginated>(url);
+  const [characters, , error] = useHttp<CharacterPaginated>(url);
 
   const handleChange: PaginatorOnChangeEvent = (_event, page) => {
     setSearchParams({
@@ -30,7 +31,7 @@ const CharactersPage = () => {
     <>
       <Section className="section section--black ">
         <SearchForm onSearch={searchData} />
-        {!isLoading && characters && !Array.isArray(characters) ? (
+        {characters ? (
           <>
             <Characters characters={characters.results}>
               <Paginator
@@ -40,6 +41,8 @@ const CharactersPage = () => {
               />
             </Characters>
           </>
+        ) : error ? (
+          <Error error={error} />
         ) : (
           <Loader />
         )}

@@ -57,6 +57,14 @@ export type PaginatorOnChangeEvent = (
   page: number
 ) => void;
 
+export type ErrorProps = {
+  error: HttpRequestError;
+};
+
+export type HttpRequestError = {
+  code: number;
+  message: string;
+};
 export type Character = {
   id: number;
   name: string;

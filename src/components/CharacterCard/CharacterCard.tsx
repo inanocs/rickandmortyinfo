@@ -5,6 +5,7 @@ import {
   Status as StatusType,
   StatusStyle,
 } from "../../types";
+import Loader from "../Loader/Loader";
 import Status from "../Status/Status";
 import "./card.scss";
 
@@ -43,7 +44,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
             {character.location.name}
           </a>
         </div>
-        {episodeInfo && !Array.isArray(episodeInfo) && (
+        {episodeInfo ? (
           <div className="card__info">
             <p className="card__subtitle">First seen in:</p>
             <a
@@ -53,6 +54,8 @@ const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
               {episodeInfo?.name}
             </a>
           </div>
+        ) : (
+          <Loader />
         )}
       </div>
     </li>
