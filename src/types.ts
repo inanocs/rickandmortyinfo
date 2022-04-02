@@ -29,6 +29,21 @@ export type SearchFormProps = {
   onSearch: (search: string) => void;
 };
 
+export type FormDataType = {
+  name: string;
+  status: Status | "";
+  gender: Gender | "";
+};
+
+export type SearchFormSelectProps = {
+  className?: string;
+  labelTitle: string;
+  name: string;
+  htmlFor: string;
+  options: Status[] | Gender[];
+  onChange: (e: React.BaseSyntheticEvent) => void;
+};
+
 export type PaginatorProps = {
   pages: number;
   center?: boolean;

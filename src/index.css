@@ -6,6 +6,10 @@
   --main-red: #d63d2e;
   --main-gray: #9e9e9e;
   --white-smoke: #ecf0f1;
+  --size-xs: 0.2rem;
+  --size-s: 0.4rem;
+  --size-m: 0.6rem;
+  --size-l: 1rem;
 }
 
 body {

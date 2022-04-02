@@ -1,17 +1,14 @@
-import React from "react";
-import "./SearchForm.scss";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { useState } from "react";
-import { SearchFormProps } from "../../types";
-
-type FormDataType = {
-  name: string;
-  status: string;
-};
+import React, { useState } from "react";
+import { FormDataType, SearchFormProps } from "../../types";
+import { genders, statusTypes } from "../../util/formUtil";
+import "./SearchForm.scss";
+import SearchFormSelect from "./SearchFormSelect";
 
 const initialState: FormDataType = {
   name: "",
   status: "",
+  gender: "",
 };
 const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
   const [formData, setFormData] = useState<FormDataType>(initialState);
@@ -22,7 +19,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
     let query = "";
     const tmpState: FormDataType = { ...formData };
     for (const key in tmpState) {
-      if (Object.hasOwnProperty(key)) {
+      if (tmpState.hasOwnProperty(key)) {
         const element: string = tmpState[key as keyof FormDataType];
         if (element !== "") {
           if (query.length === 0) {
@@ -48,12 +45,12 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
 
   return (
     <form className="search-form" onSubmit={handleSubmit}>
-      <div className="search-form__wrapper">
+      <div className="search-form__wrapper search-form__wrapper--justify-between search-form__wrapper--no-wrap">
         <input
           type="text"
           name="name"
           id="nameInput"
-          className="search-form__text"
+          className="search-form__text search-form__text--w-75"
           placeholder="Looking for something..."
           onChange={handleChange}
           value={formData.name}
@@ -73,7 +70,26 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch }) => {
         className={`search-form__filter ${
           isFilterVisible ? "search-form__filter--active" : ""
         }`}
-      ></div>
+      >
+        <div className="search-form__wrapper">
+          <SearchFormSelect
+            className="search-form__wrapper--w-50"
+            labelTitle="Status"
+            name="status"
+            htmlFor="status-filter-form"
+            options={statusTypes}
+            onChange={handleChange}
+          />
+          <SearchFormSelect
+            className="search-form__wrapper--w-50"
+            labelTitle="Gender"
+            name="gender"
+            htmlFor="gender-filter-form"
+            options={genders}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
     </form>
   );
 };
