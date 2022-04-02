@@ -1,4 +1,6 @@
-import { ChangeEvent } from "react";
+import { SvgIconComponent } from "@mui/icons-material";
+import { SvgIconProps, SvgIconTypeMap } from "@mui/material";
+import React, { ChangeEvent } from "react";
 
 export type FooterProps = {
   color?: string;
@@ -119,3 +121,7 @@ export type NavigationRoutes = {
   name: string;
   path: string;
 };
+
+export type ExternalNavigationLinks = {
+  icon?: SvgIconProps;
+} & NavigationRoutes;
