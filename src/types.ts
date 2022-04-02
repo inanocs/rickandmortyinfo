@@ -5,6 +5,7 @@ export type FooterProps = {
 };
 
 export type BurgerMenuProps = {
+  isMenuDisplay: boolean;
   onMenuDisplay: () => void;
 };
 
