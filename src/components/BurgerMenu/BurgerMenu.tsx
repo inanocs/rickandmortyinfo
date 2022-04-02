@@ -1,5 +1,5 @@
 import { BurgerMenuProps } from "../../types";
-import "./burger-menu.scss";
+import "./BurgerMenu.scss";
 
 const menuDisplayStyles = ["burger-menu__item--display"];
 const BurgerMenu: React.FC<BurgerMenuProps> = ({

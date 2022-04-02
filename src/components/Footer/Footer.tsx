@@ -1,5 +1,5 @@
 import { FooterProps } from "../../types";
-import "./footer.scss";
+import "./Footer.scss";
 const Footer: React.FC<FooterProps> = ({ color }) => {
   return (
     <footer className={`footer footer-${color}`}>

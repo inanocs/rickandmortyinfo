@@ -1,6 +1,6 @@
 import { CharactersProps } from "../../types";
 import CharacterCard from "../CharacterCard/CharacterCard";
-import "./cards.scss";
+import "./Cards.scss";
 
 const Characters: React.FC<CharactersProps> = ({
   characters = [],

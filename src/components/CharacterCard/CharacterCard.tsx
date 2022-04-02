@@ -7,7 +7,7 @@ import {
 } from "../../types";
 import Loader from "../Loader/Loader";
 import Status from "../Status/Status";
-import "./card.scss";
+import "./Card.scss";
 
 const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
   const [episodeInfo] = useHttp<Episode>(character.episode[0]);
